@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  CountdownCircleTimer,
-  useCountdown,
-} from "react-countdown-circle-timer";
+import {CountdownCircleTimer,} from "react-countdown-circle-timer";
 import styled from "styled-components";
 import { MdOutlineRestartAlt } from "react-icons/md";
 
@@ -22,9 +19,8 @@ function Clock() {
       return <div>Too late...</div>;
     } else {
       return (
-        <div>
-          {remainingTime} <br />{" "}
-          <span className="text-slate-400"> seconds </span>{" "}
+        <div>{remainingTime} <br />
+          <span className="text-slate-400"> seconds </span>
         </div>
       );
     }
@@ -40,8 +36,7 @@ function Clock() {
             duration={10}
             colors={["rgb(192 132 252)", "#F7B801", "#A30000", "#A30000"]}
             colorsTime={[7, 5, 2, 0]}
-            size={120}
-          >
+            size={120}>
             {renderTime}
           </CountdownCircleTimer>
         </TimerWrapper>
