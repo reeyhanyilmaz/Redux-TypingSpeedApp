@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import {CountdownCircleTimer,} from "react-countdown-circle-timer";
 import styled from "styled-components";
-import { MdOutlineRestartAlt } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 //sayfayı ortalıyor
 const TimerWrapper = styled.div`
   position: absolute;
-  top: 20%;
-  left: 15%;
+  top: 27%;
+  left: 17%;
   transform: translate(-50%, -50%);
 `;
 
 function Clock() {
-  const [key, setKey] = useState(0);
+  const key = useSelector((state) => state.typingSpeed.key);
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -27,7 +27,7 @@ function Clock() {
   };
 
   return (
-    <div className="">
+    <div className="flex items-center justify-center">
       <div>
         <TimerWrapper>
           <CountdownCircleTimer
@@ -42,16 +42,6 @@ function Clock() {
         </TimerWrapper>
       </div>
 
-      <div className="bg-indigo-300 w-2/3 h-20 mt-24 ml-80 rounded-xl flex justify-evenly">
-        <select name="Lang" className="rounded-full h-10 px-5  mt-5">
-          <option value="tr">Türkçe</option>
-          <option value="en">English</option>         
-        </select>
-
-        <button onClick={() => setKey((prev) => prev + 1)}>
-          <MdOutlineRestartAlt className="w-7 h-7 text-white" />
-        </button>
-      </div>
     </div>
   );
 }
