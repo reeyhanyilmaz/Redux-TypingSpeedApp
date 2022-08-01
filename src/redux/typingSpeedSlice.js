@@ -7,7 +7,9 @@ export const typingSpeedSlice = createSlice({
         words: words.words,
         lang: [ "targetWord" ,  "englishWord"],    
         selectedLang: "targetWord",
+        inputText:"",
         key: 0,
+
     },
     reducers: {
         setKey: (state) => {
@@ -18,8 +20,12 @@ export const typingSpeedSlice = createSlice({
             console.log('langFind', langFind);
             state.selectedLang = langFind;
         },
+        setInputText: (state, action) => {
+            state.inputText = action.payload;
+            console.log('action.payload :>> ', action.payload);
+        }
     },
 })
 
-export const { setKey, setSelectedLang } = typingSpeedSlice.actions;
+export const { setKey, setSelectedLang, setInputText } = typingSpeedSlice.actions;
 export default typingSpeedSlice.reducer;
