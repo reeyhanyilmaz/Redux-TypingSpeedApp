@@ -8,22 +8,36 @@ export const typingSpeedSlice = createSlice({
         lang: [ "targetWord" ,  "englishWord"],    
         selectedLang: "targetWord",
         inputText:"",
-        key: 0,
-
+        targetWord: "",
+        englishWord: "",
+        typingSpeed: 0,
+        isCorrect: [],
+        isWrong: [],       
+        key: 60,
+        wordIndex: 0,
+        start: false,
     },
     reducers: {
-        setKey: (state) => {
-            state.key += 1
-        },
+        // setKey: (state) => {
+        //     state.key = true
+        // },
         setSelectedLang: (state, action) => {
             const langFind = state.lang.find(item => item === action.payload);
             console.log('langFind', langFind);
             state.selectedLang = langFind;
         },
         setInputText: (state, action) => {
-            state.inputText = action.payload;
-            console.log('action.payload :>> ', action.payload);
-        }
+            //inputa yazı yazılmaya basladıgında çalısacak func.
+            state.start = true;
+           
+            const text = action.payload.trim();
+            if(text){
+                state.inputText = action.payload;
+            }else{
+                state.inputText = ""
+            }
+            console.log('action.payload', action.payload);
+        },
     },
 })
 

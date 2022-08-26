@@ -1,14 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInputText } from '../../redux/typingSpeedSlice';
+import { setInputText} from '../../redux/typingSpeedSlice';
 
 function Input() {
 
   const dispatch = useDispatch();
 
   const inputText = useSelector(state => state.typingSpeed.inputText);
+  const start = useSelector(state => state.typingSpeed.start);
 
   const handleChange = (e) => {
+
+    //inputa girilen text
     dispatch(setInputText(e.target.value))
   }
 
