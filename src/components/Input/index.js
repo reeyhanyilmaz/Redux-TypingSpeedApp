@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInputText} from '../../redux/typingSpeedSlice';
+import { setInputText, setKeyPress} from '../../redux/typingSpeedSlice';
 
 function Input() {
 
@@ -15,12 +15,21 @@ function Input() {
     dispatch(setInputText(e.target.value))
   }
 
+  //space tusuna basılınca olmasını istedigim
+  const handleKeyPress = (e) => {
+    if(e.keyCode === 32 && inputText){
+      dispatch(setKeyPress());
+    }
+
+  }
+
   return (
     <div className='flex items-center justify-center mt-12'>
         <input type="text" placeholder="typing..." 
         className='border-indigo-300 border-4 border-solid rounded-md w-1/3 h-20 p-3'
         value={inputText}
         onChange={handleChange}
+        onKeyDown= {handleKeyPress}
         />
     </div>
   )
