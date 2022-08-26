@@ -1,5 +1,5 @@
 import React from "react";
-import {CountdownCircleTimer,} from "react-countdown-circle-timer";
+import {CountdownCircleTimer} from "react-countdown-circle-timer";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
@@ -13,6 +13,7 @@ const TimerWrapper = styled.div`
 
 function Clock() {
   const key = useSelector((state) => state.typingSpeed.key);
+  const start = useSelector(state => state.typingSpeed.start);
 
   const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -26,14 +27,17 @@ function Clock() {
     }
   };
 
+
+ 
+
   return (
     <div className="flex items-center justify-center">
       <div>
-        <TimerWrapper>
+        <TimerWrapper> 
           <CountdownCircleTimer
             key={key}
-            isPlaying
-            duration={10}
+            isPlaying={start === true ? true : false}
+            duration={60}
             colors={["rgb(192 132 252)", "#F7B801", "#A30000", "#A30000"]}
             colorsTime={[7, 5, 2, 0]}
             size={120}>
