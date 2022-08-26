@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import words from "./words.json";
+import words from "../words.json";
+import shuffle from "../shuffle"
 
 export const typingSpeedSlice = createSlice({
   name: "typingSpeed",
   initialState: {
-    words: words.words,
+    words: shuffle(words.words),
     lang: ["targetWord", "englishWord"],
     selectedLang: "targetWord",
     inputText: "",
@@ -38,7 +39,6 @@ export const typingSpeedSlice = createSlice({
       } else {
         state.inputText = "";
       }
-      console.log("action.payload", action.payload);
     },
     setKeyPress: (state) => {
       const currentText = state.words[state.wordIndex];
@@ -53,9 +53,17 @@ export const typingSpeedSlice = createSlice({
       state.wordIndex++;
       state.inputText = ""; //her bosluktan sonra inputu bosalt
     },
+    setReplay: (state) => {
+      state.inputText = ""
+      state.correctWord = 0
+      state.wrongWord = 0
+      state.key = 60
+      state.words = shuffle(state.words)
+      state.start = false
+    }
   },
 });
 
-export const { setKey, setSelectedLang, setInputText, setKeyPress } =
+export const { setKey, setSelectedLang, setInputText, setKeyPress, setReplay } =
   typingSpeedSlice.actions;
 export default typingSpeedSlice.reducer;
