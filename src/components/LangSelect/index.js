@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function LangSelect() {
     const dispatch = useDispatch();
-    const lang = useSelector(state => state.typingSpeed.lang);
-
+    const selectedLang = useSelector(state => state.typingSpeed.selectedLang);
 
     const handleChange = (e) => {
         console.log(e.target.value)
@@ -15,9 +14,10 @@ function LangSelect() {
   return (
     <div>
         <select name="Lang" className="rounded-full h-10 px-5" onChange={handleChange}>
-            <option value="targetWord">Türkçe</option>
+            <option value="turkishWord">Türkçe</option>
             <option value="englishWord">English</option>
         </select> 
+        {/* disabled={selectedLang === "targetWord"} */}
     </div>
   )
 }
