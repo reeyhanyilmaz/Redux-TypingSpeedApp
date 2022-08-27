@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import words from "../words.json";
-import shuffle from "../shuffle"
+import shuffle from "../shuffle";
 
 export const typingSpeedSlice = createSlice({
   name: "typingSpeed",
@@ -9,31 +9,31 @@ export const typingSpeedSlice = createSlice({
     lang: ["turkishWord", "englishWord"],
     selectedLang: "turkishWord",
     inputText: "",
-    // targetWord: "",
-    // englishWord: "",
     typingSpeed: 0,
     correctWord: 0,
     wrongWord: 0,
     wordIndex: 0,
-    time: 60, 
+    time: 60,
     start: false,
   },
   reducers: {
+    setDecreaseTime: (state) => {
+      state.time--;
+    },
     setSelectedLang: (state, action) => {
       const langFind = state.lang.find((item) => item === action.payload);
       console.log("langFind", langFind);
       state.selectedLang = langFind;
-      // state.start = true;
-      // // state.key = 60;
+    },
+    setGameStart: (state) => {
+      state.start = true;
     },
     //inputa yazı yazılmaya basladıgında çalısacak func.
     setInputText: (state, action) => {
-      state.start = true;
-
       const text = action.payload.trim();
       if (text) {
         state.inputText = action.payload;
-        console.log('inputText', state.inputText);
+        console.log("inputText", state.inputText);
       } else {
         state.inputText = "";
       }
@@ -41,7 +41,10 @@ export const typingSpeedSlice = createSlice({
     setKeyPress: (state) => {
       const currentText = state.words[state.wordIndex];
 
-      if (state.inputText.trim() === currentText.turkishWord ||state.inputText.trim() === currentText.englishWord  ) {
+      if (
+        state.inputText.trim() === currentText.turkishWord ||
+        state.inputText.trim() === currentText.englishWord
+      ) {
         state.correctWord++;
         console.log("correctWord ", state.correctWord);
       } else {
@@ -52,17 +55,23 @@ export const typingSpeedSlice = createSlice({
       state.inputText = ""; //her bosluktan sonra inputu bosalt
     },
     setReplay: (state) => {
-      state.inputText = ""
-      state.correctWord = 0
-      state.wrongWord = 0
-      state.time = 60
-      state.words = shuffle(state.words)
-      state.wordIndex = 0
-      state.start = false
-    }
+      state.inputText = "";
+      state.correctWord = 0;
+      state.wrongWord = 0;
+      state.time = 60;
+      state.words = shuffle(state.words);
+      state.wordIndex = 0;
+      state.start = false;
+    },
   },
 });
 
-export const {setSelectedLang, setInputText, setKeyPress, setReplay} =
-  typingSpeedSlice.actions;
+export const {
+  setSelectedLang,
+  setInputText,
+  setKeyPress,
+  setReplay,
+  setDecreaseTime,
+  setGameStart,
+} = typingSpeedSlice.actions;
 export default typingSpeedSlice.reducer;
