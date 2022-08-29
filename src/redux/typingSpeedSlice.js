@@ -7,7 +7,7 @@ export const typingSpeedSlice = createSlice({
   initialState: {
     words: shuffle(words.words),
     lang: ["turkishWord", "englishWord"],
-    selectedLang: "turkishWord",
+    selectedLang: "",
     inputText: "",
     correctWord: 0,
     wrongWord: 0,

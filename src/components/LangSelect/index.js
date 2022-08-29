@@ -14,10 +14,10 @@ function LangSelect() {
   return (
     <div>
         <select name="Lang" className="rounded-full h-10 px-5" onChange={handleChange}>
-            <option value="turkishWord">Türkçe</option>
-            <option value="englishWord">English</option>
+            <option value="turkishWord" disabled={selectedLang === "turkishWord"}>Türkçe</option>
+            <option value="englishWord" disabled={selectedLang === "englishWord"}>English</option>
         </select> 
-        {/* disabled={selectedLang === "targetWord"} */}
+        
     </div>
   )
 }
