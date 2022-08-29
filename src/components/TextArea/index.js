@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 function Word({ index, letter, words }) {
   const wordIndex = useSelector((state) => state.typingSpeed.wordIndex);
   const selectedLang = useSelector((state) => state.typingSpeed.selectedLang);
+  const lang = useSelector((state) => state.typingSpeed.lang);
   const wrongWord = useSelector((state) => state.typingSpeed.wrongWord);
   const correctWord = useSelector((state) => state.typingSpeed.correctWord);
   const currentWord = useRef();
@@ -31,7 +32,7 @@ function Word({ index, letter, words }) {
        ${letter.status === "correct" ? "text-green-500" : ""}
           `}
     >
-      {letter[selectedLang]}{" "}
+      {letter[selectedLang ? selectedLang : lang[0]]}{" "}
     </span>
   );
 }
