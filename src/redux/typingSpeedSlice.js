@@ -9,7 +9,6 @@ export const typingSpeedSlice = createSlice({
     lang: ["turkishWord", "englishWord"],
     selectedLang: "turkishWord",
     inputText: "",
-    typingSpeed: 0,
     correctWord: 0,
     wrongWord: 0,
     wordIndex: 0,
@@ -46,9 +45,11 @@ export const typingSpeedSlice = createSlice({
         state.inputText.trim() === currentText.englishWord
       ) {
         state.correctWord++;
+        currentText.status ="correct";
         console.log("correctWord ", state.correctWord);
       } else {
         state.wrongWord++;
+        currentText.status="wrong";
         console.log("wrongword ", state.wrongWord);
       }
       state.wordIndex++;
