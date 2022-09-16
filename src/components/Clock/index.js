@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import { setReplay } from "../../redux/typingSpeedSlice";
 
 //sayfayı ortalıyor

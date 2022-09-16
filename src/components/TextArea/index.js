@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
-function Word({ index, letter, words }) {
+function Word({ index, letter }) {
   const wordIndex = useSelector((state) => state.typingSpeed.wordIndex);
   const selectedLang = useSelector((state) => state.typingSpeed.selectedLang);
   const lang = useSelector((state) => state.typingSpeed.lang);
-  const wrongWord = useSelector((state) => state.typingSpeed.wrongWord);
-  const correctWord = useSelector((state) => state.typingSpeed.correctWord);
   const currentWord = useRef();
 
   useEffect(() => {
@@ -14,7 +12,7 @@ function Word({ index, letter, words }) {
     if (wordIndex === index) {
       currentWord.current.scrollIntoView();
     }
-  }, [wordIndex]);
+  }, [wordIndex, index]);
 
   return (
     <span
